@@ -12,8 +12,9 @@ course_repo_raw <- "https://raw.githubusercontent.com/ShayOfir/DSAI4PT_Zfat_Stud
 course_datasets <- function() {
   data.frame(
     name = c("uci_activity_older_adults", "mobility_aids_manifest", "mobility_aids",
-             "gaitndd", "gaitdb", "fashion_mnist"),
-    source = c("repo", "repo", "remote", "remote", "remote", "remote"),
+             "gaitndd", "gaitdb", "fashion_mnist",
+             "stroke_clean", "stroke_upper_limb", "stroke_visits"),
+    source = c("repo", "repo", "remote", "remote", "remote", "remote", "repo", "repo", "repo"),
     stringsAsFactors = FALSE)
 }
 
@@ -39,6 +40,12 @@ load_course_data <- function(name, dest = "data") {
     stop("Unknown dataset '", name, "'. Available: ", paste(known, collapse = ", "))
   base <- .course_base()
 
+  if (name %in% c("stroke_clean", "stroke_upper_limb", "stroke_visits")) {
+    # The author's own upper-limb recovery data (book chapters 4-9); returns a data frame
+    f <- paste0(name, ".csv")
+    p <- .course_fetch(paste0(base, "data/", f), file.path(dest, f))
+    return(utils::read.csv(p, stringsAsFactors = FALSE))
+  }
   if (name == "uci_activity_older_adults") {
     # CC BY 4.0, UCI dataset 427; returns the path of the zip (see chapter 10)
     return(.course_fetch(paste0(base, "data/uci_activity_older_adults.zip"),
