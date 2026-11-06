@@ -3,3 +3,5 @@
 - `mobility_aids_manifest.csv`: list compiled for this course of 72 Wikimedia Commons images with licence, author and source URL. Images are not stored here; the loader downloads them from Commons.
 
 | stroke_clean, stroke_upper_limb, stroke_visits | Author's own data (Dr. Shay Ofir-Geva) | Published with the author's permission (5.11.26) | repo |
+
+| mobility_aids_images.zip | Wikimedia Commons, 72 images at 320 px | CC BY-SA 2.0/3.0/4.0, CC BY 2.0/3.0/4.0, CC0, public domain (per image) | repo, attribution in aids/ATTRIBUTION.txt |

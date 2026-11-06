@@ -14,7 +14,7 @@ course_datasets <- function() {
     name = c("uci_activity_older_adults", "mobility_aids_manifest", "mobility_aids",
              "gaitndd", "gaitdb", "fashion_mnist",
              "stroke_clean", "stroke_upper_limb", "stroke_visits"),
-    source = c("repo", "repo", "remote", "remote", "remote", "remote", "repo", "repo", "repo"),
+    source = c("repo", "repo", "repo", "remote", "remote", "remote", "repo", "repo", "repo"),
     stringsAsFactors = FALSE)
 }
 
@@ -57,17 +57,15 @@ load_course_data <- function(name, dest = "data") {
     return(utils::read.csv(p, stringsAsFactors = FALSE))
   }
   if (name == "mobility_aids") {
-    # images come from Wikimedia Commons; licence and author of each are in the manifest
+    # images from Wikimedia Commons (open licences); licence and author of each are in the manifest
     man <- load_course_data("mobility_aids_manifest", dest)
     man$local <- file.path(dest, "mobility_aids",
                            sprintf("%s_%02d.jpg", man$class,
                                    ave(seq_len(nrow(man)), man$class, FUN = seq_along)))
-    ua <- c("User-Agent" = "DSAI4PT-course/0.1 (teaching notebook)")
-    for (i in seq_len(nrow(man))) {
-      u <- paste0("https://commons.wikimedia.org/wiki/Special:FilePath/",
-                  utils::URLencode(gsub(" ", "_", man$file[i]), reserved = TRUE), "?width=320")
-      try(.course_fetch(u, man$local[i], headers = ua), silent = TRUE)
-    }
+    # images are hosted in this repository as one zip (attribution in aids/ATTRIBUTION.txt)
+    z <- .course_fetch(paste0(base, "data/mobility_aids_images.zip"), file.path(dest, "mobility_aids_images.zip"))
+    utils::unzip(z, exdir = dest)
+    file.rename(file.path(dest, "aids"), file.path(dest, "mobility_aids"))
     man$downloaded <- file.exists(man$local)
     return(man)
   }
