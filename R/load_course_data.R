@@ -13,8 +13,8 @@ course_datasets <- function() {
   data.frame(
     name = c("uci_activity_older_adults", "mobility_aids_manifest", "mobility_aids",
              "gaitndd", "gaitdb", "fashion_mnist",
-             "stroke_clean", "stroke_upper_limb", "stroke_visits"),
-    source = c("repo", "repo", "repo", "remote", "remote", "remote", "repo", "repo", "repo"),
+             "stroke_clean", "stroke_upper_limb", "stroke_visits", "spasticity_s1"),
+    source = c("repo", "repo", "repo", "remote", "remote", "remote", "repo", "repo", "repo", "repo"),
     stringsAsFactors = FALSE)
 }
 
@@ -40,8 +40,9 @@ load_course_data <- function(name, dest = "data") {
     stop("Unknown dataset '", name, "'. Available: ", paste(known, collapse = ", "))
   base <- .course_base()
 
-  if (name %in% c("stroke_clean", "stroke_upper_limb", "stroke_visits")) {
+  if (name %in% c("stroke_clean", "stroke_upper_limb", "stroke_visits", "spasticity_s1")) {
     # The author's own upper-limb recovery data (book chapters 4-9); returns a data frame
+    # spasticity_s1: Frenkel-Toledo et al. 2022 Sci Rep, Supplementary Table S1 (CC BY 4.0), 41 patients
     f <- paste0(name, ".csv")
     p <- .course_fetch(paste0(base, "data/", f), file.path(dest, f))
     return(utils::read.csv(p, stringsAsFactors = FALSE))
