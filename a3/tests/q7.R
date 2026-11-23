@@ -7,8 +7,8 @@ test = list(
       points = 1.0,
       code = {
         # public test
-        testthat::expect_true(inherits(rec_ii, "recipe"), info = "rec_ii should be a recipe")
-        testthat::expect_setequal(names(train_ii), c("ii_flex", "ii_ext", "group"))
+        testthat::expect_true(inherits(tune_knn, "tune_results"), info = "tune_knn should come from tune_grid()")
+        testthat::expect_equal(workflows::extract_spec_parsnip(wf_knn)$mode, "classification")
       }
     )
   )

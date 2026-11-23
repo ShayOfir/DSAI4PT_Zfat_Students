@@ -7,8 +7,7 @@ test = list(
       points = 1.0,
       code = {
         # public test
-        testthat::expect_true(inherits(folds, "group_vfold_cv"), info = "folds should come from group_vfold_cv()")
-        testthat::expect_equal(nrow(folds), 5, info = "5 folds expected")
+        testthat::expect_true(chosen_model %in% c("logistic", "knn"), info = "chosen_model should be logistic or knn")
       }
     )
   )

@@ -7,8 +7,8 @@ test = list(
       points = 1.0,
       code = {
         # public test
-        testthat::expect_true(inherits(res_full, "tune_results"), info = "res_full should come from fit_resamples()")
-        testthat::expect_true(inherits(rec_full, "recipe"))
+        testthat::expect_true(is.data.frame(age_by_group) && all(c("group", "n_persons", "mean_age") %in% names(age_by_group)), info = "age_by_group needs the columns group, n_persons, mean_age")
+        testthat::expect_equal(nrow(age_by_group), 2)
       }
     )
   )

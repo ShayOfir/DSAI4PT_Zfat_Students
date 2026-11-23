@@ -7,8 +7,8 @@ test = list(
       points = 1.0,
       code = {
         # public test
-        testthat::expect_true(inherits(tune_knn, "tune_results"), info = "tune_knn should come from tune_grid()")
-        testthat::expect_equal(workflows::extract_spec_parsnip(wf_knn)$mode, "classification")
+        testthat::expect_true(inherits(final_fit, "tune_results"), info = "final_fit should come from last_fit()")
+        testthat::expect_true(inherits(cm, "conf_mat") && all(dim(cm$table) == c(2, 2)), info = "cm should be a 2 x 2 confusion matrix")
       }
     )
   )

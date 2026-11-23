@@ -7,7 +7,8 @@ test = list(
       points = 1.0,
       code = {
         # public test
-        testthat::expect_true(chosen_model %in% c("logistic", "knn"), info = "chosen_model should be logistic or knn")
+        testthat::expect_true(inherits(res_full, "tune_results"), info = "res_full should come from fit_resamples()")
+        testthat::expect_true(inherits(rec_full, "recipe"))
       }
     )
   )

@@ -7,8 +7,8 @@ test = list(
       points = 1.0,
       code = {
         # public test
-        testthat::expect_true(inherits(final_fit, "tune_results"), info = "final_fit should come from last_fit()")
-        testthat::expect_true(inherits(cm, "conf_mat") && all(dim(cm$table) == c(2, 2)), info = "cm should be a 2 x 2 confusion matrix")
+        testthat::expect_true(inherits(res_age, "tune_results") && inherits(res_ii_age, "tune_results"), info = "res_age and res_ii_age should come from fit_resamples()")
+        testthat::expect_true(is.numeric(cv_auc_age) && length(cv_auc_age) == 1 && is.numeric(cv_auc_ii_age) && length(cv_auc_ii_age) == 1)
       }
     )
   )
