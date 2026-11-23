@@ -6,3 +6,6 @@
 
 | mobility_aids_images.zip | Wikimedia Commons, 72 images at 320 px | CC BY-SA 2.0/3.0/4.0, CC BY 2.0/3.0/4.0, CC0, public domain (per image) | repo, attribution in aids/ATTRIBUTION.txt |
 | spasticity_s1.csv | Frenkel-Toledo S, ..., Ofir-Geva S, Soroker N (2022) Shared and distinct voxel-based lesion-symptom mappings for spasticity and impaired movement in the hemiparetic upper limb. Sci Rep 12:10169 (PMID 35715476), Supplementary Table S1, doi:10.1038/s41598-022-14359-8 | CC BY 4.0 (article and supplementary material); extracted from the Word table, column names renamed, MAS 1.5 = "1+" | repo |
+| brainverse_fingers.csv | Brainverse, author's data (Dr. Shay Ofir-Geva), used with permission (unpublished; to be published openly) | Used with the author's permission for this course | repo |
+
+Derivation of `brainverse_fingers.csv` (source files are read-only, never modified): from `pre_kinematics_2.4.26.csv` keep phases 0 and 1 (stroke = the two sessions of the paretic hand; intact = healthy controls, both hands), drop rows with a missing II or MVC value (11 intact rows), rename `pcode` to `person`, `phase` to `session`, `gender` to `sex`, and lower-case the II.*/MVC.* columns with `_` instead of `.` (II = finger individuation index, MVC = maximal voluntary force in N). Result: 119 rows, 55 people (45 stroke, 10 intact).
