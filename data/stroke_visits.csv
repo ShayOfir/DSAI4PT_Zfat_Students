@@ -1,4 +1,4 @@
-id,stage,tao,fma_a,fma_bc,fma_sum,bb
+id,phase,tao,fma_a,fma_bc,fma_sum,bb
 1001,subacute,53,29,23,62,42
 1001,chronic,742,29,24,64,55
 1002,subacute,73,11,10,27,5
